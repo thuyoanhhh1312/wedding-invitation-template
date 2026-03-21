@@ -1,12 +1,8 @@
 
-import './App.css'
+import { InvitationPage } from './features/invitation';
 
 function App() {
-  return (
-    <div className="bg-red-500 text-white p-10">
-      Hello, World!
-    </div>
-  )
+  return <InvitationPage />;
 }
 
 export default App;
