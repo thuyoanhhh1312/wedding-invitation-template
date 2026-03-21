@@ -34,7 +34,7 @@ function FloralStem({ className = '' }: { className?: string }) {
   );
 }
 
-function WelcomeArcWordmark({ className = '' }: { className?: string }) {
+function WelcomeArcWordmark({ className = '', text }: { className?: string; text: string }) {
   return (
     <svg
       aria-hidden='true'
@@ -46,7 +46,7 @@ function WelcomeArcWordmark({ className = '' }: { className?: string }) {
       <path d='M24 132C41 74 92 38 152 46' id='welcome-arc-curve' />
       <text fill='currentColor' fontFamily='"Manrope", sans-serif' fontSize='17' fontWeight='500' letterSpacing='8'>
         <textPath href='#welcome-arc-curve' startOffset='7%'>
-          HAPPY WEDDING
+          {text}
         </textPath>
       </text>
     </svg>
@@ -168,7 +168,7 @@ function GiftIcon() {
   );
 }
 
-function CurvedGiftHeading({ className = '' }: { className?: string }) {
+function CurvedGiftHeading({ className = '', text }: { className?: string; text: string }) {
   return (
     <svg
       aria-hidden='true'
@@ -186,10 +186,28 @@ function CurvedGiftHeading({ className = '' }: { className?: string }) {
         style={{ textTransform: 'uppercase' }}
       >
         <textPath href='#gift-heading-curve' startOffset='0%'>
-          HỘP QUÀ MỪNG CƯỚI
+          {text}
         </textPath>
       </text>
     </svg>
+  );
+}
+
+function PreviewButton({ label, hint }: { label: string; hint: string }) {
+  return (
+    <div className='flex flex-col items-center'>
+      <button
+        aria-describedby='rsvp-preview-hint'
+        className='min-w-[7.75rem] cursor-not-allowed rounded-sm bg-[#5d1b18] px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-[#f7ede3] opacity-95'
+        disabled
+        type='button'
+      >
+        {label}
+      </button>
+      <p id='rsvp-preview-hint' className='mt-2 max-w-[11rem] text-center text-[0.62rem] leading-5 text-[#9a8574]'>
+        {hint}
+      </p>
+    </div>
   );
 }
 
@@ -207,7 +225,7 @@ function RsvpTimeline({ content, variant }: CommonInvitationCanvasProps) {
 
       {hasThreeOptions ? (
         <div className='relative mx-auto mt-8 grid max-w-[16rem] grid-cols-[1fr_1.75rem_1fr] items-center gap-y-6'>
-          <div className='absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-[#ceb79f]' />
+          <div className='absolute bottom-2 left-1/2 top-2 w-px -translate-x-1/2 bg-[#ceb79f]' />
           <div />
           <span className='relative z-10 mx-auto h-4 w-4 rounded-full border border-[#b8a18d] bg-[#fffdfa]' />
           <p className={`${timelineTextClassName} text-left`}>{variant.rsvpOptions[0]?.title ?? ''}</p>
@@ -222,7 +240,7 @@ function RsvpTimeline({ content, variant }: CommonInvitationCanvasProps) {
         </div>
       ) : (
         <div className='relative mx-auto mt-8 grid max-w-[15rem] grid-cols-[1fr_1.75rem_1fr] items-center gap-y-8'>
-          <div className='absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2 bg-[#ceb79f]' />
+          <div className='absolute bottom-2 left-1/2 top-2 w-px -translate-x-1/2 bg-[#ceb79f]' />
           <div />
           <span className='relative z-10 mx-auto h-4 w-4 rounded-full border border-[#b8a18d] bg-[#fffdfa]' />
           <p className={`${timelineTextClassName} text-left`}>{variant.rsvpOptions[0]?.title ?? ''}</p>
@@ -237,14 +255,11 @@ function RsvpTimeline({ content, variant }: CommonInvitationCanvasProps) {
         <p className='text-center font-display text-[0.78rem] uppercase tracking-[0.36em] text-[#9d846c]'>
           {content.rsvp.attendeeLabel}
         </p>
-        <div className='mt-3 flex items-center justify-center gap-6'>
-          <p className='font-display text-[2.6rem] leading-none tracking-[0.12em] text-[#7f6957]'>{content.rsvp.attendeeCount}</p>
-          <button
-            className='min-w-[7.75rem] rounded-sm bg-[#5d1b18] px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-[0.3em] text-[#f7ede3]'
-            type='button'
-          >
-            Xác nhận
-          </button>
+        <div className='mt-3 flex items-start justify-center gap-6'>
+          <p className='font-display text-[2.6rem] leading-none tracking-[0.12em] text-[#7f6957]'>
+            {content.rsvp.attendeeCount}
+          </p>
+          <PreviewButton label={content.rsvp.confirmButtonLabel} hint={content.rsvp.previewHint} />
         </div>
       </div>
     </div>
@@ -255,10 +270,12 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
   const [leadKey, supportKey] = variant.heroPairOrder;
   const lead = content.couple[leadKey];
   const support = content.couple[supportKey];
+
   const [familyLeadKey, familySupportKey] = variant.familyOrder;
   const familyLead = content.couple[familyLeadKey];
   const familySupport = content.couple[familySupportKey];
-  const partyVenue = variant.id === 'common' ? content.party.venue : variant.ceremonyVenue;
+
+  const primaryVenue = variant.id === 'common' ? content.party.venue : variant.ceremonyVenue;
   const isCommonGiftLayout = variant.id === 'common';
   const scheduleSummaryText = content.schedule.summary.join(' ');
   const welcomeTitleWords = content.welcome.title.split(' ');
@@ -266,11 +283,14 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
   return (
     <article className='w-full overflow-hidden bg-[#fffdfa] shadow-[0_30px_90px_rgba(74,36,32,0.18)]'>
       <section className='bg-[#5d1b18] px-8 pb-10 pt-8 text-[#efe2d1]'>
-        <p className='text-center text-[0.63rem] uppercase tracking-[0.55em]'>YOU ARE THE LOVE OF MY LIFE</p>
+        <p className='text-center text-[0.63rem] uppercase tracking-[0.55em]'>{content.labels.coverEyebrow}</p>
+
         <div className='mt-12 text-center'>
-          <p className='font-script text-[3.5rem] leading-none text-[#f2e4d7]'>We Got Married</p>
-          <p className='mt-2 text-[0.7rem] italic text-[#e4cdb8]'>It&apos;s been a long time, see you at the wedding!</p>
-          <p className='mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-[#dcbfa6]'>{content.hero.date}</p>
+          <p className='font-script text-[3.5rem] leading-none text-[#f2e4d7]'>{content.hero.statusLabel}</p>
+          <p className='mt-2 text-[0.7rem] italic text-[#e4cdb8]'>{content.hero.subquote}</p>
+          <p className='mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-[#dcbfa6]'>
+            {content.hero.date}
+          </p>
         </div>
 
         <img
@@ -282,7 +302,8 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
       </section>
 
       <section className='bg-[#fffdfa] px-10 pb-0 pt-10 text-[#9f8a6a]'>
-        <p className='text-center text-[0.6rem] uppercase tracking-[0.52em]'>Happy Wedding</p>
+        <p className='text-center text-[0.6rem] uppercase tracking-[0.52em]'>{content.labels.coverLine}</p>
+
         <div className='mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-2 text-center'>
           <div className='translate-y-2'>
             <p className='font-display text-[4.8rem] leading-none'>{lead.mark}</p>
@@ -301,21 +322,18 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
           </div>
         </div>
 
-        <p className='font-script mt-7 text-center text-[3.45rem] leading-none text-[#a18a69]'>Wedding</p>
+        <p className='font-script mt-7 text-center text-[3.45rem] leading-none text-[#a18a69]'>
+          {content.labels.eventWordmark}
+        </p>
 
         <div className='mt-8 flex justify-center'>
-          <img
-            alt='Wedding couple portrait'
-            className='w-[76%] object-cover'
-            loading='lazy'
-            src={doorwayCouple}
-          />
+          <img alt='Wedding couple portrait' className='w-[76%] object-cover' loading='lazy' src={doorwayCouple} />
         </div>
       </section>
 
       <section className='bg-[#5d1b18] px-8 pb-12 pt-9 text-center text-[#efe2d1]'>
-        <p className='text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>THIỆP MỜI CƯỚI CỦA</p>
-        <p className='mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>CHÚNG MÌNH</p>
+        <p className='text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>{content.labels.ceremonyOfUs[0]}</p>
+        <p className='mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>{content.labels.ceremonyOfUs[1]}</p>
 
         <div className='mx-auto mt-6 h-11 w-px bg-[#b3876f]' />
 
@@ -333,25 +351,29 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
         <div className='mt-7 inline-flex rounded-sm bg-[#d6c29f] px-5 py-1.5 text-[0.58rem] font-semibold uppercase tracking-[0.36em] text-[#5d1b18]'>
           {content.party.dayLabel}
         </div>
+
         <p className='mt-3 font-display text-[2.95rem] leading-none tracking-[0.26em]'>{content.party.time}</p>
 
         <div className='mt-6 grid grid-cols-3 gap-3 text-[#e6d0bb]'>
-          {content.party.date.split(' - ').map((part, index) => {
-            const labels = ['Ngày', 'Tháng', 'Năm'];
-            return (
-              <div key={`${part}-${index}`} className='space-y-1'>
-                <p className='font-display text-[3.25rem] leading-none'>{part}</p>
-                <p className='font-script text-[1.2rem] leading-none text-[#f0decf]'>{labels[index]}</p>
-              </div>
-            );
-          })}
+          {[content.eventDate.digits.day, content.eventDate.digits.month, content.eventDate.digits.year].map(
+            (part, index) => {
+              const labels = ['Ngày', 'Tháng', 'Năm'];
+
+              return (
+                <div key={`${part}-${index}`} className='space-y-1'>
+                  <p className='font-display text-[3.25rem] leading-none'>{part}</p>
+                  <p className='font-script text-[1.2rem] leading-none text-[#f0decf]'>{labels[index]}</p>
+                </div>
+              );
+            },
+          )}
         </div>
 
         <p className='mt-5 text-[0.9rem] text-[#f0dfcf]'>{content.party.note}</p>
 
         <div className='mx-auto mt-7 h-11 w-px bg-[#b3876f]' />
 
-        <p className='font-display mt-7 text-[1.85rem] leading-none tracking-[0.08em]'>{partyVenue}</p>
+        <p className='font-display mt-7 text-[1.85rem] leading-none tracking-[0.08em]'>{primaryVenue}</p>
         <div className='mt-7 space-y-2 text-[0.76rem] font-semibold uppercase leading-6 tracking-[0.28em] text-[#d6c0ab]'>
           {content.party.address.map((line) => (
             <p key={line}>{line}</p>
@@ -362,7 +384,7 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
       <section className='bg-[#fffdfa] px-8 pb-9 pt-8 text-[#b19879]'>
         <div className='grid grid-cols-[1.05fr_0.95fr] items-start gap-5'>
           <div>
-            <p className='text-right text-[0.62rem] uppercase tracking-[0.48em]'>Happy Wedding</p>
+            <p className='text-right text-[0.62rem] uppercase tracking-[0.48em]'>{content.labels.scheduleWordmark}</p>
             <p className='font-script mt-3 text-[3rem] leading-none'>Fall in Love Wedding</p>
           </div>
 
@@ -370,24 +392,20 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
             <p className='text-[0.68rem] font-semibold uppercase tracking-[0.34em]'>{variant.ceremonyTitle}</p>
             <p className='text-[0.68rem] font-semibold uppercase tracking-[0.34em]'>ĐƯỢC TỔ CHỨC VÀO</p>
             <p className='font-display text-[2.5rem] leading-none text-[#5d1b18]'>{variant.ceremonyTime}</p>
-            <p className='text-[0.68rem] font-semibold uppercase tracking-[0.34em]'>{variant.ceremonyDate}</p>
+            <p className='text-[0.68rem] font-semibold uppercase tracking-[0.34em]'>{content.eventDate.displayLong}</p>
             <p className='text-xs italic'>{`(${variant.ceremonyHost})`}</p>
           </div>
         </div>
 
         <div className='mt-3 flex items-start gap-4'>
           <FloralStem className='h-28 w-12 shrink-0 text-[#d2b990]' />
-          <img
-            alt='Close-up couple portrait'
-            className='w-full object-cover'
-            loading='lazy'
-            src={closeupCouple}
-          />
+          <img alt='Close-up couple portrait' className='w-full object-cover' loading='lazy' src={closeupCouple} />
         </div>
       </section>
 
       <section className='bg-[#5d1b18] px-8 pb-10 pt-8 text-[#efe2d1]'>
-        <p className='font-script text-center text-[3rem] leading-none text-[#eddcc8]'>My Lover</p>
+        <p className='font-script text-center text-[3rem] leading-none text-[#eddcc8]'>{content.labels.letterTitle}</p>
+
         <div className='mt-6 space-y-3 text-[0.88rem] leading-6 text-[#f0e1d2]'>
           {content.letter.paragraphs.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
@@ -402,6 +420,7 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
 
       <section className='bg-[#fffdfa] px-8 pb-8 pt-8 text-[#aa9274]'>
         <p className='font-script text-center text-[2.8rem] leading-none'>{familyLead.name}</p>
+
         <div className='mt-5 grid grid-cols-2 gap-3'>
           <img
             alt={familyLead.name}
@@ -416,6 +435,7 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
             src={familySupport.portrait}
           />
         </div>
+
         <p className='font-script mt-4 text-center text-[2.8rem] leading-none'>{familySupport.name}</p>
 
         <div className='mt-6 grid grid-cols-2 gap-4 text-center text-[#7d6655]'>
@@ -452,19 +472,17 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
       </section>
 
       <section className='bg-[#5d1b18] px-8 pb-10 pt-0 text-[#efe2d1]'>
-        <img
-          alt='Story couple portrait'
-          className='w-full object-cover'
-          loading='lazy'
-          src={doorwayCouple}
-        />
+        <img alt='Story couple portrait' className='w-full object-cover' loading='lazy' src={doorwayCouple} />
 
         <p className='mx-auto mt-10 max-w-[28rem] text-center font-formal text-[0.96rem] leading-[1.55rem] tracking-[0.055em] text-[#d9bb9f]'>
           {content.welcome.intro}
         </p>
 
         <div className='relative mt-[4.8rem] min-h-[35rem]'>
-          <WelcomeArcWordmark className='absolute right-[2.15rem] top-[2.7rem] h-[9.25rem] w-[9.25rem] text-[#b79a79]' />
+          <WelcomeArcWordmark
+            className='absolute right-[2.15rem] top-[2.7rem] h-[9.25rem] w-[9.25rem] text-[#b79a79]'
+            text={content.labels.welcomeWordmark}
+          />
 
           <div className='relative z-10 max-w-[21rem] pl-3 text-[#dfc39d]'>
             <p className='font-formal text-[4.5rem] font-medium leading-[0.86] italic tracking-[-0.06em]'>
@@ -514,12 +532,7 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
           </div>
         </div>
 
-        <img
-          alt='Editorial bridal portrait'
-          className='mt-8 w-full object-cover'
-          loading='lazy'
-          src={gownEditorial}
-        />
+        <img alt='Editorial bridal portrait' className='mt-8 w-full object-cover' loading='lazy' src={gownEditorial} />
       </section>
 
       <section className='overflow-hidden bg-[#5d1b18] px-8 pb-10 pt-8 text-[#e7d7c5]'>
@@ -533,16 +546,18 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
               src={commonScheduleHappyWordmark}
             />
             <div className='space-y-0.5'>
-              {content.schedule.dateDigits.map((digit) => (
-                <p key={digit} className='font-display text-[4.75rem] leading-[0.82]'>
-                  {digit}
-                </p>
-              ))}
+              {[content.eventDate.digits.day, content.eventDate.digits.month, content.eventDate.digits.year].map(
+                (digit) => (
+                  <p key={digit} className='font-display text-[4.75rem] leading-[0.82]'>
+                    {digit}
+                  </p>
+                ),
+              )}
             </div>
           </div>
 
           <div className='absolute left-[67%] top-[13.6rem] -translate-x-1/2 space-y-1.5 text-center font-formal text-[0.96rem] leading-[1.15rem] tracking-[0.015em] text-[#ead8c4]'>
-            <p className='whitespace-nowrap'>{content.schedule.eventDate}</p>
+            <p className='whitespace-nowrap'>{content.eventDate.displayLong}</p>
             <p className='whitespace-nowrap'>{content.schedule.subline}</p>
           </div>
 
@@ -585,7 +600,10 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
 
         <div className='mt-14 flex justify-center'>
           <div className={`relative ${isCommonGiftLayout ? 'w-[16rem]' : 'w-[11rem]'}`}>
-            <CurvedGiftHeading className='absolute -left-[4.8rem] -top-[1.8rem] h-[10rem] w-[10rem] text-[#8f7862]' />
+            <CurvedGiftHeading
+              className='absolute -left-[4.8rem] -top-[1.8rem] h-[10rem] w-[10rem] text-[#8f7862]'
+              text={content.labels.giftHeading}
+            />
             <div className={isCommonGiftLayout ? 'grid grid-cols-2 gap-3 pl-4' : 'grid place-items-center pl-5'}>
               {variant.giftTags.map((tag) => (
                 <div key={tag} className='text-center'>
@@ -601,14 +619,19 @@ export function CommonInvitationCanvas({ content, variant }: CommonInvitationCan
                       <GiftIcon />
                     </div>
                   )}
-                  <p className='mt-2 font-display text-[1.02rem] uppercase tracking-[0.22em] text-[#8b735f]'>{tag}</p>
+
+                  <p className='mt-2 font-display text-[1.02rem] uppercase tracking-[0.22em] text-[#8b735f]'>
+                    {tag}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        <p className='mt-12 text-center font-display text-[1rem] leading-8 text-[#7b675a]'>{content.rsvp.giftNote}</p>
+        <p className='mt-12 text-center font-display text-[1rem] leading-8 text-[#7b675a]'>
+          {content.rsvp.giftNote}
+        </p>
       </section>
     </article>
   );

@@ -1,5 +1,5 @@
-import { CommonInvitationCanvas } from './CommonInvitationCanvas';
 import type { InvitationContent, InvitationVariant } from '../types/invitation.types';
+import { CommonInvitationCanvas } from './CommonInvitationCanvas';
 
 interface InvitationCanvasProps {
   content: InvitationContent;

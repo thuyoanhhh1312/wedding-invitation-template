@@ -9,7 +9,10 @@ import gardenCouple from '../../../assets/invitation/garden-couple.png';
 import gardenGroom from '../../../assets/invitation/garden-groom.png';
 import gownEditorial from '../../../assets/invitation/gown-editorial.png';
 import interiorBride from '../../../assets/invitation/interior-bride.png';
+import { createInvitationEventDate } from '../../../lib/date';
 import type { InvitationContent, InvitationVariant } from '../types/invitation.types';
+
+const eventDate = createInvitationEventDate('2025-11-29', 'Tức ngày 10 tháng 10 âm lịch');
 
 export const invitationContent: InvitationContent = {
   couple: {
@@ -29,11 +32,12 @@ export const invitationContent: InvitationContent = {
       name: 'Ngọc Thảo',
       houseLabel: 'Nhà gái',
       location: 'Vĩnh Yên, Phú Thọ',
-      parents: ['Bố: Nguyễn Viết Cường', 'Mẹ: Trần Thị Mơ'],
+      parents: ['Bố: Nguyễn Văn Bình', 'Mẹ: Phạm Thị Lan'],
       portrait: floralBride,
       romanLabel: 'BRIDE',
     },
   },
+  eventDate,
   footer: {
     note: 'Cảm ơn vì luôn bên cạnh và yêu thương. Bọn mình rất mong được gặp bạn trong ngày vui này!',
     photos: [coverCouple, formalPortrait, chandelierCouple],
@@ -41,13 +45,25 @@ export const invitationContent: InvitationContent = {
     tagline: 'Happy Wedding',
   },
   hero: {
-    date: '29.12.2025',
+    date: eventDate.displayShort,
     image: chandelierCouple,
     invitees: 'Bạn Trang và anh Nam',
     quote: 'You are the love of my life',
     statusLabel: 'We Got Married',
     subquote: "It's been a long time, see you at the wedding!",
     title: 'Thiệp mời cưới của chúng mình',
+  },
+  labels: {
+    arcWordmark: 'HAPPY WEDDING',
+    ceremonyOfUs: ['THIỆP MỜI CƯỚI CỦA', 'CHÚNG MÌNH'],
+    coverEyebrow: 'YOU ARE THE LOVE OF MY LIFE',
+    coverLine: 'Happy Wedding',
+    eventWordmark: 'Wedding',
+    familyWordmark: 'Wedding House',
+    giftHeading: 'HỘP QUÀ MỪNG CƯỚI',
+    letterTitle: 'My Lover',
+    scheduleWordmark: 'Happy Wedding',
+    welcomeWordmark: 'HAPPY WEDDING',
   },
   letter: {
     eyebrow: 'My Lover',
@@ -64,10 +80,9 @@ export const invitationContent: InvitationContent = {
       'Số 9 - Ngách 2, Ngõ 33 đường Hùng Vương,',
       'Phường Vĩnh Yên, Tỉnh Phú Thọ',
     ],
-    date: '28 - 10 - 26',
-    dayLabel: 'Thứ Sáu',
+    dayLabel: eventDate.weekdayLabel,
     image: doorwayCouple,
-    note: 'Tức ngày 9 tháng 10 âm lịch',
+    note: eventDate.lunarNote ?? '',
     subtitle: 'Cùng gia đình chúng tôi vào lúc',
     time: '16:00',
     title: 'Đến dự buổi tiệc chung vui',
@@ -76,29 +91,22 @@ export const invitationContent: InvitationContent = {
   rsvp: {
     attendeeCount: '01',
     attendeeLabel: 'Số lượng người tham dự',
+    confirmButtonLabel: 'Xác nhận',
     giftNote: 'Cảm ơn tình cảm của mọi người đã dành cho chúng mình.',
     giftTitle: 'Hộp quà mừng cưới',
+    previewHint: 'Nút này chỉ là preview giao diện, chưa có xử lý form thật.',
     question: 'Bạn sẽ tham dự chứ?',
     title: 'Xác nhận tham dự',
   },
   schedule: {
-    dateDigits: ['28', '10', '26'],
     dateLabel: 'Happy Wedding',
-    eventDate: 'Thứ Bảy, 28/10/2026',
     photo: flowerBride,
-    subline: 'Âm lịch 10/10 | 10:00 AM',
+    subline: `${eventDate.lunarNote ?? ''} | 10:00 AM`,
     summary: [
-      'Ngày mình chính thức gọi nhau là vợ chồng, là ngày câu chuyện nhỏ của hai đứa viết sang một chương mới.',
-      'Cảm ơn vì đã tìm thấy nhau, và chọn ở lại - mãi mãi.',
+      'Ngày mình chính thức gọi nhau là vợ chồng là ngày câu chuyện nhỏ của hai đứa viết sang một chương mới.',
+      'Cảm ơn vì đã tìm thấy nhau, và chọn ở lại — mãi mãi.',
     ],
     title: 'Sweet Wedding Invitation',
-  },
-  welcome: {
-    body:
-      'Mình chẳng có những buổi hẹn hò cầu kỳ, chỉ là cùng nhau ăn một bữa cơm, đi dạo quanh phố, kể chuyện linh tinh đến khuya. Nhưng hóa ra, hạnh phúc đôi khi chỉ giản dị vậy thôi.',
-    intro:
-      'Ba tháng sau, chúng mình chẳng cần lý do gì lớn lao. Chỉ biết là muốn cùng nhau đi hết đoạn đường còn lại. Và thế là, một đám cưới ra đời - tròn tám tháng kể từ ngày bắt đầu yêu.',
-    title: 'Wellcome To Wedding',
   },
   stories: [
     {
@@ -138,14 +146,21 @@ export const invitationContent: InvitationContent = {
       tone: 'wine',
     },
   ],
+  welcome: {
+    body:
+      'Mình chẳng có những buổi hẹn hò cầu kỳ, chỉ là cùng nhau ăn một bữa cơm, đi dạo quanh phố, kể chuyện linh tinh đến khuya. Nhưng hóa ra, hạnh phúc đôi khi chỉ giản dị vậy thôi.',
+    intro:
+      'Ba tháng sau, chúng mình chẳng cần lý do gì lớn lao. Chỉ biết là muốn cùng nhau đi hết đoạn đường còn lại. Và thế là, một đám cưới ra đời — tròn tám tháng kể từ ngày bắt đầu yêu.',
+    title: 'Welcome To Wedding',
+  },
 };
 
 export const invitationVariants: InvitationVariant[] = [
   {
     accentLabel: 'Common Invitation',
-    ceremonyDate: 'Thứ Bảy | 29.11.2025',
     ceremonyHost: 'Tại gia đình nhà trai',
-    ceremonySummary: 'Biến thể gốc của bộ thiệp, giữ cả nhịp RSVP cho nhà trai và nhà gái trong cùng một preview.',
+    ceremonySummary:
+      'Biến thể gốc của bộ thiệp, giữ cả nhịp RSVP cho nhà trai và nhà gái trong cùng một preview.',
     ceremonyTime: '18:00',
     ceremonyTitle: 'Lễ thành hôn',
     ceremonyVenue: 'Tư gia nhà trai',
@@ -175,9 +190,9 @@ export const invitationVariants: InvitationVariant[] = [
   },
   {
     accentLabel: 'Bride House',
-    ceremonyDate: 'Thứ Bảy | 29.11.2025',
     ceremonyHost: 'Tại gia đình nhà gái',
-    ceremonySummary: 'Biến thể riêng cho lễ vu quy, giữ nguyên ngôn ngữ hình ảnh nhưng đổi trọng tâm sang phía nhà gái.',
+    ceremonySummary:
+      'Biến thể riêng cho lễ vu quy, giữ nguyên ngôn ngữ hình ảnh nhưng đổi trọng tâm sang phía nhà gái.',
     ceremonyTime: '18:00',
     ceremonyTitle: 'Lễ vu quy',
     ceremonyVenue: 'Tư gia nhà gái',
@@ -202,9 +217,9 @@ export const invitationVariants: InvitationVariant[] = [
   },
   {
     accentLabel: 'Groom House',
-    ceremonyDate: 'Thứ Bảy | 29.11.2025',
     ceremonyHost: 'Tại gia đình nhà trai',
-    ceremonySummary: 'Biến thể riêng cho lễ thành hôn của nhà trai, tối giản phần RSVP và giữ nhịp màu gốc của thiết kế.',
+    ceremonySummary:
+      'Biến thể riêng cho lễ thành hôn của nhà trai, tối giản phần RSVP và giữ nhịp màu gốc của thiết kế.',
     ceremonyTime: '18:00',
     ceremonyTitle: 'Lễ thành hôn',
     ceremonyVenue: 'Tư gia nhà trai',

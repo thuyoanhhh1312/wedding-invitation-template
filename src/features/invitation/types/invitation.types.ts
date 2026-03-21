@@ -1,3 +1,5 @@
+import type { InvitationEventDate } from '../../../lib/date';
+
 export type InvitationHouseKey = 'bride' | 'groom';
 export type InvitationVariantKey = 'common' | 'bride' | 'groom';
 
@@ -23,7 +25,6 @@ export interface InvitationHeroData {
 }
 
 export interface InvitationPartyData {
-  date: string;
   dayLabel: string;
   image: string;
   note: string;
@@ -57,9 +58,7 @@ export interface InvitationWelcomeData {
 }
 
 export interface InvitationScheduleData {
-  dateDigits: [string, string, string];
   dateLabel: string;
-  eventDate: string;
   photo: string;
   subline: string;
   summary: string[];
@@ -69,8 +68,10 @@ export interface InvitationScheduleData {
 export interface InvitationRsvpData {
   attendeeCount: string;
   attendeeLabel: string;
+  confirmButtonLabel: string;
   giftNote: string;
   giftTitle: string;
+  previewHint: string;
   question: string;
   title: string;
 }
@@ -82,10 +83,25 @@ export interface InvitationFooterData {
   tagline: string;
 }
 
+export interface InvitationLabels {
+  arcWordmark: string;
+  ceremonyOfUs: [string, string];
+  coverEyebrow: string;
+  coverLine: string;
+  eventWordmark: string;
+  familyWordmark: string;
+  giftHeading: string;
+  letterTitle: string;
+  scheduleWordmark: string;
+  welcomeWordmark: string;
+}
+
 export interface InvitationContent {
   couple: Record<InvitationHouseKey, InvitationPersona>;
+  eventDate: InvitationEventDate;
   footer: InvitationFooterData;
   hero: InvitationHeroData;
+  labels: InvitationLabels;
   letter: InvitationLetterData;
   party: InvitationPartyData;
   rsvp: InvitationRsvpData;
@@ -102,7 +118,6 @@ export interface InvitationRsvpOption {
 
 export interface InvitationVariant {
   accentLabel: string;
-  ceremonyDate: string;
   ceremonyHost: string;
   ceremonySummary: string;
   ceremonyTime: string;
