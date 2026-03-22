@@ -25,6 +25,7 @@ export interface InvitationHeroData {
 }
 
 export interface InvitationPartyData {
+  date: string;
   dayLabel: string;
   image: string;
   note: string;

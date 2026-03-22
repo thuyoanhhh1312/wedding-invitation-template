@@ -80,6 +80,7 @@ export const invitationContent: InvitationContent = {
       'Số 9 - Ngách 2, Ngõ 33 đường Hùng Vương,',
       'Phường Vĩnh Yên, Tỉnh Phú Thọ',
     ],
+    date: eventDate.displayShort,
     dayLabel: eventDate.weekdayLabel,
     image: doorwayCouple,
     note: eventDate.lunarNote ?? '',
