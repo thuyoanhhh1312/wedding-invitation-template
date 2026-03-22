@@ -133,6 +133,152 @@ export function WelcomeBotanical({ className = '' }: { className?: string }) {
   );
 }
 
+export function NameplateFlower({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden='true'
+      className={className}
+      fill='none'
+      viewBox='0 0 220 520'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M100 516C112 468 123 427 132 394C142 355 148 320 150 288C154 230 148 170 133 107'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2'
+      />
+      <path
+        d='M115 103C98 112 81 113 64 106C51 96 44 82 44 64C56 46 73 38 95 41C102 24 116 15 136 14C150 23 158 37 160 56C172 53 184 57 195 69C193 86 183 98 167 104C154 118 137 122 115 118C102 121 89 118 78 108'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='2.2'
+      />
+      <path
+        d='M88 48C98 63 105 78 108 95'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.6'
+      />
+      <path
+        d='M106 37C119 54 126 74 126 97'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.6'
+      />
+      <path
+        d='M127 38C136 52 141 67 142 86'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.6'
+      />
+      <path
+        d='M150 52C147 69 140 83 128 95'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.6'
+      />
+      <path
+        d='M166 73C156 82 143 89 127 93'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.6'
+      />
+      <path
+        d='M138 156C157 168 174 186 188 210'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.5'
+      />
+      <path
+        d='M173 172C179 167 186 166 193 169C193 178 188 184 179 186'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.4'
+      />
+      <path
+        d='M184 188C191 183 198 182 205 185C205 194 200 200 191 202'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.4'
+      />
+      <path
+        d='M191 208C198 203 205 202 212 206C212 214 207 220 198 223'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.4'
+      />
+      <path
+        d='M134 165C146 176 155 192 161 213'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.2'
+      />
+      <path
+        d='M128 222C114 249 99 281 82 319C68 350 59 383 55 418'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.7'
+      />
+      <path
+        d='M96 259C82 253 69 241 58 224C70 222 82 226 94 236'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.7'
+      />
+      <path
+        d='M92 280C76 275 62 265 50 248C62 245 76 250 90 262'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.7'
+      />
+      <path
+        d='M102 432C118 415 136 404 158 397C153 421 137 437 109 444'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.8'
+      />
+      <path
+        d='M93 455C77 446 64 431 54 411C72 409 86 418 98 437'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.8'
+      />
+      <path
+        d='M81 515C99 500 120 490 145 484C137 502 118 514 89 519'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.9'
+      />
+      <path
+        d='M74 490C58 482 45 468 35 449C53 447 68 456 80 474'
+        stroke='currentColor'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        strokeWidth='1.8'
+      />
+    </svg>
+  );
+}
+
 export function GiftIcon() {
   return (
     <svg

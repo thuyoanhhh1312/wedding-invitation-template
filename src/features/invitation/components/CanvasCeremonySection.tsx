@@ -10,8 +10,12 @@ export function CanvasCeremonySection({ content, variant }: CanvasCeremonySectio
 
   return (
     <section className='bg-[#5d1b18] px-8 pb-12 pt-9 text-center text-[#efe2d1]'>
-      <p className='text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>{content.labels.ceremonyOfUs[0]}</p>
-      <p className='mt-1 text-[0.66rem] font-semibold uppercase tracking-[0.52em]'>{content.labels.ceremonyOfUs[1]}</p>
+      <p className='font-playfair-display text-[clamp(1.5rem,4.6vw,2.25rem)] font-semibold uppercase tracking-[0.36em] text-[#CBB48A]'>
+        {content.labels.ceremonyOfUs[0]}
+      </p>
+      <p className='font-playfair-display mt-2 text-[clamp(1.5rem,4.6vw,2.25rem)] font-semibold uppercase tracking-[0.36em] text-[#CBB48A]'>
+        {content.labels.ceremonyOfUs[1]}
+      </p>
 
       <div className='mx-auto mt-6 h-11 w-px bg-[#b3876f]' />
 

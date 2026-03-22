@@ -11,9 +11,11 @@ export function CanvasHeroSection({ content }: CanvasHeroSectionProps) {
       <p className='text-center text-[0.66rem] uppercase tracking-[0.58em]'>{content.labels.coverEyebrow}</p>
 
       <div className='mt-14 text-center'>
-        <p className='font-armelie text-[4.5rem] leading-[1.05] text-[#f2e4d7]'>{content.hero.statusLabel}</p>
-        <p className='font-formal mt-3 text-[1.1rem] italic leading-none text-[#e4cdb8]'>{content.hero.subquote}</p>
-        <p className='font-formal mt-3 text-[0.82rem] italic tracking-[0.04em] text-[#dcbfa6]'>
+        <p className='font-great-vibes inline-block whitespace-nowrap text-[clamp(3.6rem,8vw,4.5rem)] leading-[0.95] text-[#f2e4d7]'>
+          {content.hero.statusLabel}
+        </p>
+        <p className='font-formal mt-3 text-[1.1rem] font-semibold italic leading-none text-white'>{content.hero.subquote}</p>
+        <p className='font-formal mt-3 text-[0.82rem] font-semibold tracking-[0.04em] text-white'>
           {content.hero.date}
         </p>
       </div>

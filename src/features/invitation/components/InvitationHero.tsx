@@ -55,7 +55,9 @@ export function InvitationHero({ content, variant }: InvitationHeroProps) {
           </div>
 
           <div className='mt-6 rounded-[1.5rem] bg-[#f5ecdf] px-4 py-4 text-center'>
-            <p className='font-armelie text-[1.8rem] leading-none text-[#9d7658]'>{content.hero.statusLabel}</p>
+            <p className='font-great-vibes inline-block whitespace-nowrap text-[clamp(1.45rem,5.6vw,1.8rem)] leading-none text-[#9d7658]'>
+              {content.hero.statusLabel}
+            </p>
             <p className='font-display mt-2 text-3xl leading-none text-[#6a2624]'>{content.hero.date}</p>
           </div>
         </div>

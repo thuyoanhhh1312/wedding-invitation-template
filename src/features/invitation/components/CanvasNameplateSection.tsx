@@ -1,6 +1,6 @@
 import doorwayCouple from '../../../assets/invitation/doorway-couple.png';
+import bongFlower from '../../../assets/invitation/bong.png';
 import type { InvitationContent, InvitationVariant } from '../types/invitation.types';
-import { WelcomeBotanical } from './svgs';
 
 interface CanvasNameplateSectionProps {
   content: InvitationContent;
@@ -49,8 +49,8 @@ export function CanvasNameplateSection({ content, variant }: CanvasNameplateSect
         </svg>
       </div>
 
-      {/* Updated Initials + Botanical grid — botanical overlaps with arc */}
-      <div className='-mt-14 grid grid-cols-[1fr_auto_1fr] items-center px-8 text-center'>
+      {/* Updated Initials + floral grid */}
+      <div className='-mt-14 grid grid-cols-[1fr_auto_1fr] items-end px-8 text-center'>
         {/* Left: lead initial + name + label */}
         <div className='flex flex-col items-center self-end pb-4'>
           <p className='font-display text-[5.2rem] leading-none text-[#4f3d2d]'>{lead.mark}</p>
@@ -64,13 +64,19 @@ export function CanvasNameplateSection({ content, variant }: CanvasNameplateSect
                 </>
               )}
             </p>
-            <p className='mt-1 text-[0.54rem] uppercase tracking-[0.28em] text-[#b09070]'>GROOM</p>
+            <div className='mx-auto mt-1.5 h-px w-[4.85rem] bg-[#c4aa86]' />
+            <p className='mt-1.5 text-[0.54rem] uppercase tracking-[0.28em] text-[#8f7756]'>{lead.romanLabel}</p>
           </div>
         </div>
 
         {/* Center: botanical illustration */}
-        <div className='flex flex-col items-center px-2'>
-          <WelcomeBotanical className='h-52 w-14 text-[#c8ad84]' />
+        <div className='flex flex-col items-center px-1'>
+          <img
+            alt='Floral illustration'
+            className='h-[21rem] w-[8.8rem] object-contain'
+            loading='lazy'
+            src={bongFlower}
+          />
         </div>
 
         {/* Right: support initial + name + label */}
@@ -86,7 +92,8 @@ export function CanvasNameplateSection({ content, variant }: CanvasNameplateSect
                 </>
               )}
             </p>
-            <p className='mt-1 text-[0.54rem] uppercase tracking-[0.28em] text-[#b09070]'>BRIDE</p>
+            <div className='mx-auto mt-1.5 h-px w-[4.85rem] bg-[#c4aa86]' />
+            <p className='mt-1.5 text-[0.54rem] uppercase tracking-[0.28em] text-[#8f7756]'>{support.romanLabel}</p>
           </div>
         </div>
       </div>
