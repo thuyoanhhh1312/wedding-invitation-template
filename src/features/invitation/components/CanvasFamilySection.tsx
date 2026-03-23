@@ -38,7 +38,7 @@ export function CanvasFamilySection({ content, variant }: CanvasFamilySectionPro
         className='text-[3rem]'
         style={{ fontFamily: 'Great Vibes, cursive' }}
       >
-        {familyLead.name}
+        {familySupport.name}
       </p>
 
       <div className='mt-6 grid grid-cols-2 gap-4 text-center text-[#7d6655]'>
