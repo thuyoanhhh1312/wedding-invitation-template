@@ -24,7 +24,7 @@ export function InvitationCeremonySection({ content, variant }: InvitationCeremo
 
           <div className='wine-surface rounded-[1.85rem] px-5 py-5 text-[#fbefe7]'>
             <p className='text-[0.68rem] font-semibold uppercase tracking-[0.34em] text-[#e7c7b2]'>Wedding</p>
-            <p className='font-display mt-3 text-[2.1rem] leading-none'>{variant.ceremonyDate}</p>
+            <p className='font-display mt-3 text-[2.1rem] leading-none'>{content.eventDate.displayShort}</p>
             <p className='mt-4 text-xs uppercase tracking-[0.28em] text-[#e7c8b7]'>{variant.ceremonyVenue}</p>
             <p className='mt-2 text-sm leading-6 text-[#f3ddd2]'>{variant.ceremonyHost}</p>
 

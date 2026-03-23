@@ -79,7 +79,7 @@ export function InvitationHero({ content, variant }: InvitationHeroProps) {
             </div>
             <div className='rounded-[1.35rem] bg-[#f6ede4] px-3 py-4 text-center'>
               <p className='text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#9f7656]'>Ngày</p>
-              <p className='font-display mt-2 text-[1.85rem] leading-none text-[#6a2624]'>{content.party.date}</p>
+              <p className='font-display mt-2 text-[1.85rem] leading-none text-[#6a2624]'>{content.eventDate.digits.day}</p>
             </div>
           </div>
 

@@ -39,11 +39,11 @@ export function InvitationPage() {
         </section>
 
         <section className='flex min-w-0 w-full px-2 sm:px-4 md:px-6 lg:px-10'>
-          <div className='mx-auto w-full max-w-[34rem] rounded-[2.5rem] border border-[#e5d3c1] bg-[linear-gradient(180deg,#fbf5ee_0%,#f3e8db_100%)] p-3 shadow-[0_28px_80px_rgba(74,36,32,0.12)] sm:p-4 md:p-5'>
+          <div className='mx-auto w-full max-w-136 rounded-[2.5rem] border border-[#e5d3c1] bg-[linear-gradient(180deg,#fbf5ee_0%,#f3e8db_100%)] p-3 shadow-[0_28px_80px_rgba(74,36,32,0.12)] sm:p-4 md:p-5'>
             <div
               id={panelId}
               aria-labelledby={`invitation-tab-${selectedVariant.id}`}
-              className='overflow-hidden rounded-[2rem] bg-[#f7eee5] ring-1 ring-[#ecdccc]'
+              className='overflow-hidden rounded-4xl bg-[#f7eee5] ring-1 ring-[#ecdccc]'
               role='tabpanel'
             >
               <InvitationCanvas content={invitationContent} variant={selectedVariant} />

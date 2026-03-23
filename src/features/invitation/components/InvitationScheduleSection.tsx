@@ -15,14 +15,14 @@ export function InvitationScheduleSection({ content }: InvitationScheduleSection
           </p>
 
           <div className='mt-4 grid grid-cols-3 gap-3 text-center'>
-            {content.schedule.dateDigits.map((digit) => (
+            {[content.eventDate.digits.day, content.eventDate.digits.month, content.eventDate.digits.year].map((digit: string) => (
               <div key={digit} className='rounded-[1.4rem] bg-white/8 px-3 py-4'>
                 <p className='font-display text-[2.4rem] leading-none'>{digit}</p>
               </div>
             ))}
           </div>
 
-          <p className='font-display mt-5 text-center text-[2rem] leading-none'>{content.schedule.eventDate}</p>
+          <p className='font-display mt-5 text-center text-[2rem] leading-none'>{content.eventDate.displayShort}</p>
           <p className='mt-2 text-center text-sm uppercase tracking-[0.24em] text-[#eed7ca]'>{content.schedule.subline}</p>
         </div>
 
