@@ -47,7 +47,7 @@ export function createInvitationEventDate(isoDate: string, lunarNote?: string): 
     digits: {
       day,
       month,
-      year,
+      year: year.slice(-2),
     },
   };
 }

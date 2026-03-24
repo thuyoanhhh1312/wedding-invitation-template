@@ -12,7 +12,7 @@ import interiorBride from '../../../assets/invitation/interior-bride.png';
 import { createInvitationEventDate } from '../../../lib/date';
 import type { InvitationContent, InvitationVariant } from '../types/invitation.types';
 
-const eventDate = createInvitationEventDate('2025-11-29', 'Tức ngày 10 tháng 10 âm lịch');
+const eventDate = createInvitationEventDate('2026-10-28', 'Tức ngày 10 tháng 10 âm lịch');
 
 export const invitationContent: InvitationContent = {
   couple: {

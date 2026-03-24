@@ -11,15 +11,15 @@ export function ScheduleSection({ content, model }: ScheduleSectionProps) {
   return (
     <section className='relative overflow-visible bg-[#5d1b18] px-8 pb-0 pt-8 text-[#e7d7c5]'>
       <div className='relative min-h-180'>
-        <div className='absolute left-[70%] top-5 -translate-x-1/2 text-center text-[#dfc09f]'>
+        <div className='absolute left-[70%] top-5= -translate-x-1/2 text-center text-[#dfc09f]'>
           <img
             alt=''
             aria-hidden='true'
-            className='absolute -left-[4.95rem] -top-[0.9rem] h-[4.35rem] w-auto'
+            className='absolute -left-[2rem] -top-[0rem] h-[4.2rem] w-auto'
             loading='lazy'
             src={commonInvitationAssets.commonScheduleHappyWordmark}
           />
-          <div className='space-y-0.5'>
+          <div className='space-y-0.5 mt-4'>
             {[content.eventDate.digits.day, content.eventDate.digits.month, content.eventDate.digits.year].map((digit: string) => (
               <p key={digit} className='font-display text-[4.75rem] leading-[0.82]'>
                 {digit}
@@ -33,7 +33,7 @@ export function ScheduleSection({ content, model }: ScheduleSectionProps) {
           <p className='whitespace-nowrap'>{content.schedule.subline}</p>
         </div>
 
-        <div className='absolute left-[84%] top-[16.2rem] h-[8.6rem] w-px bg-[#b99072]' />
+        <div className='absolute mt-4 left-[84%] top-[16.2rem] h-[4.6rem] w-px bg-[#b99072]' />
 
         <div className='pt-94'>
           <img

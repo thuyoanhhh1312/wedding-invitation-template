@@ -15,7 +15,7 @@ function RsvpTimeline({ content, variant }: { content: InvitationContent; varian
 
   return (
     <div className='mt-2'>
-      <img alt='' aria-hidden='true' className='mx-auto h-11 w-11' loading='lazy' src={commonInvitationAssets.bottomRoseIcon} />
+      <img alt='' aria-hidden='true' className='mx-auto h-20 w-20' loading='lazy' src={commonInvitationAssets.roseIcon} />
       <p className='mt-4 text-center font-display text-[0.82rem] uppercase tracking-[0.34em] text-[#8e7862]'>
         {content.rsvp.title}
       </p>

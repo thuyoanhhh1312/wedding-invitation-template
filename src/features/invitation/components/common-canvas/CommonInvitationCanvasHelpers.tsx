@@ -1,6 +1,8 @@
 import type { InvitationContent, InvitationVariant } from '../../types/invitation.types';
 import type { CommonCanvasModel } from './CommonInvitationCanvas.types';
 import flowerTransparent from '../../../../assets/invitation/flower_transparent.png';
+import threeFlowerImg from '../../../../assets/invitation/three-flower.png';
+import threeRoseImg from '../../../../assets/invitation/three-rose.png';
 
 export function buildCommonCanvasModel(
   content: InvitationContent,
@@ -206,4 +208,12 @@ export function CurvedGiftHeading({ className = '' }: { className?: string }) {
 
 export function FlowerTransparent({ className = '' }: { className?: string }) {
   return <img src={flowerTransparent} alt="Flower" className={className} />;
+}
+
+export function ThreeFlower({ className = '' }: { className?: string }) {
+  return <img src={threeFlowerImg} alt="Three Flower" className={className} />;
+}
+
+export function ThreeRose({ className = '' }: { className?: string }) {
+  return <img src={threeRoseImg} alt="Three Rose" className={className} />;
 }
